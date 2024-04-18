@@ -11,18 +11,54 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as ZustandIndexImport } from './routes/Zustand/index'
+import { Route as XstateIndexImport } from './routes/Xstate/index'
+import { Route as ValtioIndexImport } from './routes/Valtio/index'
+import { Route as ReduxToolkitIndexImport } from './routes/ReduxToolkit/index'
+import { Route as RecoilIndexImport } from './routes/Recoil/index'
+import { Route as MobXIndexImport } from './routes/MobX/index'
+import { Route as JotaiIndexImport } from './routes/Jotai/index'
 
 // Create/Update Routes
 
-const AboutRoute = AboutImport.update({
-  path: '/about',
+const IndexRoute = IndexImport.update({
+  path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexRoute = IndexImport.update({
-  path: '/',
+const ZustandIndexRoute = ZustandIndexImport.update({
+  path: '/Zustand/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const XstateIndexRoute = XstateIndexImport.update({
+  path: '/Xstate/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ValtioIndexRoute = ValtioIndexImport.update({
+  path: '/Valtio/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReduxToolkitIndexRoute = ReduxToolkitIndexImport.update({
+  path: '/ReduxToolkit/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RecoilIndexRoute = RecoilIndexImport.update({
+  path: '/Recoil/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MobXIndexRoute = MobXIndexImport.update({
+  path: '/MobX/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const JotaiIndexRoute = JotaiIndexImport.update({
+  path: '/Jotai/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -34,8 +70,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      preLoaderRoute: typeof AboutImport
+    '/Jotai/': {
+      preLoaderRoute: typeof JotaiIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/MobX/': {
+      preLoaderRoute: typeof MobXIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/Recoil/': {
+      preLoaderRoute: typeof RecoilIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/ReduxToolkit/': {
+      preLoaderRoute: typeof ReduxToolkitIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/Valtio/': {
+      preLoaderRoute: typeof ValtioIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/Xstate/': {
+      preLoaderRoute: typeof XstateIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/Zustand/': {
+      preLoaderRoute: typeof ZustandIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -43,6 +103,15 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute, AboutRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexRoute,
+  JotaiIndexRoute,
+  MobXIndexRoute,
+  RecoilIndexRoute,
+  ReduxToolkitIndexRoute,
+  ValtioIndexRoute,
+  XstateIndexRoute,
+  ZustandIndexRoute,
+])
 
 /* prettier-ignore-end */
