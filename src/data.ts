@@ -12,3 +12,10 @@ export const users: User[] = [
   { id: 9, name: "Ivan", email: "Ivan@whatever.com" },
   { id: 10, name: "Judy", email: "Judy@whatever.com" },
 ];
+
+export function changeUserMail(user: User) {
+  return {
+    ...user,
+    email: user.email.endsWith("com") ? user.email.replace("com", "org") : user.email.replace("org", "com"),
+  };
+}

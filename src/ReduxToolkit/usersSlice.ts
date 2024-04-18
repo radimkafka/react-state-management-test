@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../types";
-import { users } from "../data";
+import { changeUserMail, users } from "../data";
 
 export interface UsersState {
   data: User[];
@@ -18,9 +18,12 @@ export const usersSlice = createSlice({
     deleteUser: (state, action: PayloadAction<number>) => {
       state.data = state.data.filter(user => user.id !== action.payload);
     },
+    changeUser: (state, action: PayloadAction<number>) => {
+      state.data = state.data.map(user => (user.id !== action.payload ? user : changeUserMail(user)));
+    },
   },
 });
 
-export const { deleteUser } = usersSlice.actions;
+export const { deleteUser, changeUser } = usersSlice.actions;
 
 export default usersSlice.reducer;
