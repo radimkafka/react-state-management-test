@@ -1,13 +1,17 @@
-import { makeAutoObservable } from "mobx";
+import { action, makeObservable, observable } from "mobx";
 import { changeUserMail, users } from "../../data";
+import { User } from "../../types";
 
 export class UserObservable {
-  data = users;
+  data = [] as User[];
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this, { changeUser: action, deleteUser: action, data: observable });
+    this.data = users;
   }
 
   deleteUser(id: number) {
+    console.log("id: ", id);
+    console.log("this.data: ", this);
     this.data = this.data.filter(user => user.id !== id);
   }
   changeUser(id: number) {

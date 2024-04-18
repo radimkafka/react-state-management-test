@@ -11,12 +11,12 @@ const myUsers = new UserObservable();
 function MobX() {
   return (
     <div>
-      <Component />
+      <ObserverComponent data={myUsers} />
     </div>
   );
 }
 
-const Component = observer(({ data }: UserObservable) => {
+const Component = ({ data: { data, changeUser, deleteUser } }: { data: UserObservable }) => {
   console.log("Component");
 
   return (
@@ -26,7 +26,8 @@ const Component = observer(({ data }: UserObservable) => {
       ))}
     </div>
   );
-});
+};
+const ObserverComponent = observer(Component);
 
 // function UserCountComponent() {
 //   console.log("UserCountComponent");
