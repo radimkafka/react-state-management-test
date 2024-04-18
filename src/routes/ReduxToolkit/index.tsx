@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { RootState, store } from "../../ReduxToolkit/store";
+import { RootState, store } from "../../stateManagement/ReduxToolkit/store";
 import UserDetail from "../../components/UserDetail";
-import { changeUser, deleteUser } from "../../ReduxToolkit/usersSlice";
+import { changeUser, deleteUser } from "../../stateManagement/ReduxToolkit/usersSlice";
 import UserCount from "../../components/UserCount";
 
 export const Route = createFileRoute("/ReduxToolkit/")({
