@@ -19,3 +19,11 @@ export function changeUserMail(user: User) {
     email: user.email.endsWith("com") ? user.email.replace("com", "org") : user.email.replace("org", "com"),
   };
 }
+
+export function deleteUser(data: User[], id: number) {
+  return data.filter(user => user.id !== id);
+}
+
+export function changeUser(data: User[], id: number) {
+  return data.map(user => (user.id !== id ? user : changeUserMail(user)));
+}

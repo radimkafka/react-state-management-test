@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useAtom, useAtomValue } from "jotai";
-import { usersAtom } from "../../stateManagement/Jotai/usersAtom";
+import { userCountAtom, usersAtom } from "../../stateManagement/Jotai/usersAtom";
 import UserDetail from "../../components/UserDetail";
 import UserCount from "../../components/UserCount";
+import { changeUser, deleteUser } from "../../data";
 
 export const Route = createFileRoute("/Jotai/")({
   component: Jotai,
@@ -24,7 +25,12 @@ function Component() {
   return (
     <div>
       {users.map(user => (
-        <UserDetail key={user.id} data={user} /*onDelete={id => deleteUser(id)} onChange={id => changeUser(id)}*/ />
+        <UserDetail
+          key={user.id}
+          data={user}
+          onDelete={id => setUsers(deleteUser(users, id))}
+          onChange={id => setUsers(changeUser(users, id))}
+        />
       ))}
     </div>
   );
@@ -32,6 +38,6 @@ function Component() {
 
 function UserCountComponent() {
   console.log("UserCountComponent");
-  const users = useAtomValue(usersAtom);
-  return <UserCount count={users.length} />;
+  const count = useAtomValue(userCountAtom);
+  return <UserCount count={count} />;
 }

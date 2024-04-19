@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { changeUserMail, users } from "../../data";
+import { changeUser, deleteUser, users } from "../../data";
 import { User } from "../../types";
 
 interface UserState {
@@ -12,9 +12,9 @@ export const useUserStore = create<UserState>(set => ({
   data: users,
 
   deleteUser: (id: number) => {
-    set(state => ({ data: state.data.filter(user => user.id !== id) }));
+    set(state => ({ data: deleteUser(state.data, id) }));
   },
   changeUser: (id: number) => {
-    set(state => ({ data: state.data.map(user => (user.id !== id ? user : changeUserMail(user))) }));
+    set(state => ({ data: changeUser(state.data, id) }));
   },
 }));
