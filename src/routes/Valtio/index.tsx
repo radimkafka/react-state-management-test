@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useSnapshot } from "valtio/react";
+import { useSnapshot } from "valtio";
 import UserCount from "../../components/UserCount";
 import { changeUser, deleteUser, usersStore } from "../../stateManagement/Valtio/usersStore";
 import UsersList from "../../components/UsersList";
@@ -19,12 +19,20 @@ function Valtio() {
 }
 
 function Component() {
-  const users = useSnapshot(usersStore).data;
-
-  return <UsersList users={users as User[]} onDelete={id => deleteUser(id)} onChange={id => changeUser(id)} />;
+  const users = useSnapshot(usersStore);
+  console.log(users.data);
+  return <UsersList users={users.data as User[]} onDelete={id => deleteUser(id)} onChange={id => changeUser(id)} />;
 }
 
 function UserCountComponent() {
-  const count = useSnapshot(usersStore).data;
-  return <UserCount count={count.length} />;
+  const count = useSnapshot(usersStore);
+  const users = usersStore.data;
+  console.log(count.data);
+
+  return (
+    <>
+      {users[0]?.email}
+      <UserCount count={count.data.length} />;
+    </>
+  );
 }
