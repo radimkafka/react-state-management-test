@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "@tanstack/react-router": "^1.28.6",
+    "@xstate/react": "^4.1.1",
     "jotai": "^2.8.0",
     "mobx": "^6.12.3",
     "mobx-react-lite": "^4.0.7",
