@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { RootState, store } from "../../stateManagement/ReduxToolkit/store";
-import UserDetail from "../../components/UserDetail";
 import { changeUser, deleteUser } from "../../stateManagement/ReduxToolkit/usersSlice";
 import UserCount from "../../components/UserCount";
+import UsersList from "../../components/UsersList";
 
 export const Route = createFileRoute("/ReduxToolkit/")({
   component: ReduxToolkit,
@@ -19,26 +19,15 @@ function ReduxToolkit() {
 }
 
 function Component() {
-  console.log("Component");
   const users = useSelector((state: RootState) => state.users.data);
   const dispatch = useDispatch();
 
   return (
-    <div>
-      {users.map(user => (
-        <UserDetail
-          key={user.id}
-          data={user}
-          onDelete={id => dispatch(deleteUser(id))}
-          onChange={id => dispatch(changeUser(id))}
-        />
-      ))}
-    </div>
+    <UsersList users={users} onDelete={id => dispatch(deleteUser(id))} onChange={id => dispatch(changeUser(id))} />
   );
 }
 
 function UserCountComponent() {
-  console.log("UserCountComponent");
   const count = useSelector((state: RootState) => state.users.data.length);
   return <UserCount count={count} />;
 }

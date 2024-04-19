@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { observer } from "mobx-react-lite";
 import { UserObservable } from "../../stateManagement/Mobx/UserObservable";
-import UserDetail from "../../components/UserDetail";
+import UsersList from "../../components/UsersList";
 
 export const Route = createFileRoute("/MobX/")({
   component: MobX,
@@ -19,13 +19,7 @@ function MobX() {
 const Component = ({ data: { data, changeUser, deleteUser } }: { data: UserObservable }) => {
   console.log("Component");
 
-  return (
-    <div>
-      {data.map(user => (
-        <UserDetail key={user.id} data={user} onDelete={id => deleteUser(id)} onChange={id => changeUser(id)} />
-      ))}
-    </div>
-  );
+  return <UsersList users={data} onDelete={id => deleteUser(id)} onChange={id => changeUser(id)} />;
 };
 const ObserverComponent = observer(Component);
 

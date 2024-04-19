@@ -1,5 +1,3 @@
-import React from "react";
-
 type Props = { onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void; className?: string };
 
 const DeleteButton = ({ onClick, className }: Props) => (
