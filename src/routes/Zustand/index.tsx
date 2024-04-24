@@ -17,7 +17,6 @@ function Zustand() {
 }
 
 function Component() {
-  console.log("Component");
   const { changeUser, data: users, deleteUser } = useUserStore();
 
   return <UsersList users={users} onDelete={id => deleteUser(id)} onChange={id => changeUser(id)} />;
